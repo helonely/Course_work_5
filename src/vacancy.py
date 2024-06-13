@@ -45,5 +45,5 @@ class HHParser(ABCParser):
 
 if __name__ == '__main__':
     hh = HHParser()
-    print(hh.get_vacancies_data())
-    print(hh.get_employers_data())
+    # print(hh.get_vacancies_data())
+    # print(hh.get_employers_data())
