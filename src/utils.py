@@ -44,3 +44,20 @@ def insert_vacancies(db_conn, vacancies_data):
                 )
             )
             db_conn.commit()
+
+
+def insert_employers(db_conn, employers_data):
+    """Заполняет данные по компаниям"""
+    with db_conn.cursor() as cursor:
+        for employer in employers_data:
+            cursor.execute(
+                """
+                INSERT INTO companies(id, name, url)
+                VALUES(%s,%s,%s);
+                """, (
+                    employer['id'],  # id компании
+                    employer['name'],  # название
+                    employer['url'],  # ссылка
+                )
+            )
+            db_conn.commit()
