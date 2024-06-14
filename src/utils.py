@@ -23,6 +23,24 @@ def create_tables(db_conn):  # Принимает подключение
             );
         """)
 
-    db_conn.commit()
+        db_conn.commit()
 
 
+def insert_vacancies(db_conn, vacancies_data):
+    """Заполняет данные по вакансиям"""
+    with db_conn.cursor() as cursor:
+        for vacancy in vacancies_data:
+            cursor.execute(
+                """
+                INSERT INTO vacancies(id, name, url, company_id, salary_min, salary_max)
+                VALUES(%s,%s,%s,%s,%s,%s);
+                """, (
+                    vacancy['id'],  # id вакансии
+                    vacancy['name'],  # название
+                    vacancy['url'],  # ссылка
+                    vacancy['employer']['id'],  # id компании
+                    vacancy['salary']['from'],  # зп минимальная
+                    vacancy['salary']['to'],  # зп максимальная
+                )
+            )
+            db_conn.commit()
