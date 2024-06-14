@@ -15,7 +15,7 @@ hh_api_config = {
         '4949',
         '67611'
     ],
-    'vacation_per_page': 1,
+    'vacation_per_page': 100,
     'area': 113,  # Russia
     'only_with_salary': True
 }
