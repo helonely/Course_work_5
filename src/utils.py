@@ -1,4 +1,5 @@
 from src.db_connection import DBConnection
+from src.vacancy import HHParser
 
 
 def create_tables(db_conn):  # Принимает подключение
@@ -61,3 +62,38 @@ def insert_employers(db_conn, employers_data):
                 )
             )
             db_conn.commit()
+
+
+def truncate_table(db_conn):
+    """Удаляет все строки из таблицы для перезаписи"""
+    with db_conn.cursor() as cursor:
+        cursor.execute(
+            """
+            TRUNCATE TABLE companies RESTART IDENTITY CASCADE;
+            """
+        )
+        cursor.execute(
+            """
+            TRUNCATE TABLE vacancies RESTART IDENTITY;
+            """
+        )
+        db_conn.commit()
+
+
+if __name__ == '__main__':
+    db_conn = DBConnection(
+        name='cw5',
+        host='localhost',
+        port=5432,
+        user='postgres',
+        password='ravil1211'
+    ).conn
+    create_tables(db_conn)
+    hh = HHParser()
+    truncate_table(db_conn)
+
+    employers = hh.get_employers_data()
+    vacancies = hh.get_vacancies_data()
+
+    insert_employers(db_conn, employers_data=employers)
+    insert_vacancies(db_conn, vacancies_data=vacancies)
