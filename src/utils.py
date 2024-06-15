@@ -78,22 +78,3 @@ def truncate_table(db_conn):
             """
         )
         db_conn.commit()
-
-
-if __name__ == '__main__':
-    db_conn = DBConnection(
-        name='cw5',
-        host='localhost',
-        port=5432,
-        user='postgres',
-        password='ravil1211'
-    ).conn
-    create_tables(db_conn)
-    hh = HHParser()
-    truncate_table(db_conn)
-
-    employers = hh.get_employers_data()
-    vacancies = hh.get_vacancies_data()
-
-    insert_employers(db_conn, employers_data=employers)
-    insert_vacancies(db_conn, vacancies_data=vacancies)

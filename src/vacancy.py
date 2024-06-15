@@ -41,9 +41,3 @@ class HHParser(ABCParser):
             }
             employers_data.append(employer_data)
         return employers_data
-
-
-if __name__ == '__main__':
-    hh = HHParser()
-    # print(hh.get_vacancies_data())
-    # print(hh.get_employers_data())
