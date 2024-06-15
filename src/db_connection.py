@@ -15,13 +15,3 @@ class DBConnection:
     def conn_close(self):
         """Закрыть подключение к БД"""
         self.conn.close()
-
-
-if __name__ == '__main__':
-    db_conn = DBConnection(
-        name='cw5',
-        host='localhost',
-        port=5432,
-        user='postgres',
-        password='ravil1211'
-    ).conn
