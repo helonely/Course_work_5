@@ -14,4 +14,4 @@ git clone https://github.com/helonely/Course_work_5.git
 3. Установите зависимости
 4. Запустите скрипт
 Запустите основной скрипт проекта, используя Python:
-<python main.py>
+python main.py
